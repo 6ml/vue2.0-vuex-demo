@@ -13,8 +13,6 @@
 
 		<hr>
 
-		<router-view></router-view>
-
 		<div class="time-extries">
 			<p v-if="!plans.length"><strong>还没有任何计划</strong></p>
 
@@ -52,6 +50,8 @@
 				</a>
 			</div>
 		</div>
+
+		<router-view></router-view>
 	</div>
 </template>
 
