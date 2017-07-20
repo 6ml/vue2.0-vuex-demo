@@ -23,7 +23,7 @@
 							<img :src="plan.avatar" class="avatar img-circle img-responsive">
 							<p class="text-center">
 								<strong>
-									{{plan.name}}
+									{{plan.username}}
 								</strong>
 							</p>
 						</div>

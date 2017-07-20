@@ -31,6 +31,10 @@
   import Sidebar from './components/Sidebar.vue'
 
   export default {
-    components: {'sidebar': Sidebar}
+    components: {'sidebar': Sidebar},
+    mounted: function(){
+      this.$store.dispatch('getPlans')
+      this.$store.dispatch('getTotalTime')
+    }
   }
 </script>

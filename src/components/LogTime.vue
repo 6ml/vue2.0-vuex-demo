@@ -35,7 +35,7 @@
 			save () {
 				const plan = {
 					date : this.date,
-					totalTime : this.totalTime,
+					totalTime : parseInt(this.totalTime),
 					comment : this.comment
 				};
 				this.$store.dispatch('savePlan', plan)
