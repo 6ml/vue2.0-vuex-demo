@@ -10,28 +10,36 @@ export default {
 	},
 	savePlan({ commit, dispatch }, plan){
 		axios.post('/api/addPlan', plan)
-			.then( () => {
-				dispatch('getPlans');
-				dispatch('getTotalTime');
+			.then( (result) => {
+				let data = result.data;
+				if(typeof data === "object"){
+					commit(types.SAVE_PLAN, data);
+					dispatch('addTotalTime', data.totalTime);
+				}
+				else{
+					alert('添加失败');
+				}
+			}).catch(() => {
+				alert('添加失败');
 			});
 	},
-	deletePlan({ commit }, idx) {
-		commit(types.DELETE_PLAN, idx)
-		axios.post('/api/deletePlan',{"id":"12321"}).then(result => {
-			console.log(result)
-		}).catch(err => {
-			console.error(err);
+	deletePlan({ commit, dispatch }, deleteObj) {
+		let plan = deleteObj.plan;
+		let idx = deleteObj.index;
+		axios.post('/api/deletePlan',{id: plan._id}).then(() => {
+			commit(types.DELETE_PLAN, idx);
+			dispatch('decTotalTime', plan.totalTime);
+		}).catch( () => {
+			alert('删除失败');
 		})
 	},
 	getPlans({ commit }) {
 		axios.get('/api/getPlans').then(result => {
-			console.log(result.data);
 			commit(types.GET_PLAN, result.data);
 		});
 	},
 	getTotalTime({ commit }) {
 		axios.get('/api/getTotalTime').then(result => {
-			console.log(result)
 			commit(types.GET_TOTALTIME, result.data)
 		})
 	}

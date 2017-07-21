@@ -11,11 +11,9 @@ export default {
 	},
 	// 新增计划
 	[types.SAVE_PLAN] (state, plan) {
-		// 设置默认值，未来我们可以做登入直接读取昵称和头像
-		const avatar = 'https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_huge256'
-
+		plan.date = plan.date.slice(0, 10)
 		state.list.push(
-			Object.assign({ username: 'luapth', avatar: avatar}, plan)
+			plan
 		)
 	},
 	// 删除计划
@@ -25,7 +23,7 @@ export default {
 	// 获取 plan 数据
 	[types.GET_PLAN] (state, result) {
 		result.forEach((item) => {
-			item.date = item.date.slice(0,10)
+			item.date = item.date.slice(0, 10)
 		})
 		state.list = result
 	},
