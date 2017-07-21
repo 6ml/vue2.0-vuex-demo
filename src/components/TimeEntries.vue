@@ -1,56 +1,49 @@
 <template>
 	<div>
-		<router-link 
-			v-if="$route.path !== '/time-entries/log-time'"
-			to="/time-entries/log-time"
-			class="btn btn-primary">
-			创建
+		<router-link v-if="$route.path !== '/time-entries/log-time'" to="/time-entries/log-time">
+			<el-button type="primary">创建</el-button>
 		</router-link>
 
 		<div v-if="$route.path === '/time-entries/log-time'">
 			<h3>创建</h3>
 		</div>
-
+		
 		<hr>
 
 		<div class="time-extries">
 			<p v-if="!plans.length"><strong>还没有任何计划</strong></p>
 
-			<div class="list-group">
-				<div class="list-group-item" v-for="(plan,index) in plans">
-					<div class="row">
-						<div class="col-sm-2 user-details">
-							<img :src="plan.avatar" class="avatar img-circle img-responsive">
-							<p class="text-center">
-								<strong>
-									{{plan.username}}
-								</strong>
-							</p>
-						</div>
-
-						<div class="col-sm-2 text-center time-block">
-							<h3 class="list-group-item-text total-time">
-								<i class="glyphicon glyphicon-time"></i>
-								{{plan.totalTime}}
+			<el-card class="box-card">
+				<div class="item" v-for="(plan, index) in plans" :key="index">
+					<el-row>
+						<el-col :span="4">
+							<img :src="plan.avatar" class="plan-avatar">
+							<p class="text-center"><strong>
+								{{ plan.username }}
+							</strong></p>
+						</el-col>
+						<el-col :span="4">
+							<h3 class="plan-totalTime">
+								<i class="el-icon-time"></i>
+								{{ plan.totalTime }}
 							</h3>
-							<p class="label label-primary text-center">
-								<i class="glyphicon glyphicon-calendar"></i>
-								{{plan.date}}
+							<p class="plan-date">
+								<i class="el-icon-date"></i>
+								{{ plan.date }}
 							</p>
-						</div>
-
-						<div class="col-sm-7 comment-section">
-							<p class="comment">{{plan.comment}}</p>
-						</div>
-
-						<div class="col-sm-1"><button class="btn btn-xs btn-danger delete-button" @click="deletePlan(index)">x</button>
-						</div>
-
-					</div>
+						</el-col>
+						<el-col :span="14">
+							<p class="plan-comment">
+								{{ plan.comment }}
+							</p>
+						</el-col>
+						<el-col :span="2">
+							<el-button type="danger" icon="close" @click="deletePlan(index)"></el-button>
+						</el-col>
+					</el-row>
 				</div>
-			</div>
+			</el-card>
 		</div>
-
 		<router-view></router-view>
 	</div>
 </template>
@@ -79,21 +72,15 @@
 </script>
 
 <style>
-  .avatar {
-    height: 75px;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .plan-avatar{
+  	display: block;
+  	width: 60%;
+  	height: 80%;
+  	border-radius: 50%;
+  	margin: 0 auto 10px;
   }
-  .user-details {
-    background-color: #f5f5f5;
-    border-right: 1px solid #ddd;
-    margin: -10px 0;
-  }
-  .time-block {
-    padding: 10px;
-  }
-  .comment-section {
-    padding: 20px;
+
+  .text-center{
+  	text-align: center;
   }
 </style>

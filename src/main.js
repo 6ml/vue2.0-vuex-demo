@@ -2,12 +2,15 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from './router'
-import 'bootstrap/dist/css/bootstrap.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+// import 'bootstrap/dist/css/bootstrap.css'
 
 import App from './App'
 import store from './store'
 
 Vue.config.productionTip = false
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({
