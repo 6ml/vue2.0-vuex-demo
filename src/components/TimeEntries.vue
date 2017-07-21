@@ -64,12 +64,15 @@
 				return this.$store.state.list
 			}
 		},
-		method: {
+		methods: {
 			deletePlan (idx) {
-				// 减去总时间
-				this.$store.dispatch('decTotalTime', this.plans[idx].totalTime)
+				// 将参数传入一个对象，dispatch 只能接受一个参数
+				let deleteObj = {
+					plan: this.plans[idx],
+					index: idx
+				}
 				// 删除该计划
-				this.$store.dispatch('deletePlan', idx)
+				this.$store.dispatch('deletePlan', deleteObj)
 			}
 		}
 	}

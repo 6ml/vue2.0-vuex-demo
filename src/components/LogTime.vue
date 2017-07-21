@@ -34,12 +34,14 @@
 		methods: {
 			save () {
 				const plan = {
+					username: 'lupath',
+					avatar: 'avatar',
 					date : this.date,
 					totalTime : parseInt(this.totalTime),
 					comment : this.comment
 				};
 				this.$store.dispatch('savePlan', plan)
-				this.$store.dispatch('addTotalTime', this.totalTime)
+				// this.$store.dispatch('addTotalTime', this.totalTime)
 				this.$router.go(-1)
 			}
 		}
