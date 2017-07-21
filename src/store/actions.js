@@ -9,7 +9,21 @@ export default {
 		commit(types.DEC_TOTAL_TIME, time)
 	},
 	savePlan({ commit, dispatch }, plan){
-		axios.post('/api/addPlan', plan)
+		// 将页面表单数据封装成 FormData 数据
+		let formdata = new FormData();
+
+		formdata.append('username', plan.username);
+		formdata.append('avatar', plan.avatar);
+		formdata.append('date', plan.date);
+		formdata.append('totalTime', plan.totalTime);
+		formdata.append('comment', plan.comment);
+
+		// 设置请求头信息
+		let config = {
+			headers: {'Content-Type': 'multipart/form-data'}
+		};
+
+		axios.post('/api/addPlan', formdata, config)
 			.then( (result) => {
 				let data = result.data;
 				if(typeof data === "object"){
@@ -42,5 +56,10 @@ export default {
 		axios.get('/api/getTotalTime').then(result => {
 			commit(types.GET_TOTALTIME, result.data)
 		})
+	},
+	upload( { commit }, formdata ) {
+		// axios.post('http://vue-1251802397.coscd.myqcloud.com',formdata).then(result => {
+		// 	console.log(result);
+		// });
 	}
 }
