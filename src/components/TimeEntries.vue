@@ -17,7 +17,7 @@
 			<p v-if="!plans.length"><strong>还没有任何计划</strong></p>
 
 			<div class="list-group">
-				<a class="list-group-item" v-for="(plan,index) in plans">
+				<div class="list-group-item" v-for="(plan,index) in plans">
 					<div class="row">
 						<div class="col-sm-2 user-details">
 							<img :src="plan.avatar" class="avatar img-circle img-responsive">
@@ -31,7 +31,7 @@
 						<div class="col-sm-2 text-center time-block">
 							<h3 class="list-group-item-text total-time">
 								<i class="glyphicon glyphicon-time"></i>
-								{{plan.totaltime}}
+								{{plan.totalTime}}
 							</h3>
 							<p class="label label-primary text-center">
 								<i class="glyphicon glyphicon-calendar"></i>
@@ -40,14 +40,14 @@
 						</div>
 
 						<div class="col-sm-7 comment-section">
-							<p>{{plan.comment}}</p>
+							<p class="comment">{{plan.comment}}</p>
 						</div>
 
 						<div class="col-sm-1"><button class="btn btn-xs btn-danger delete-button" @click="deletePlan(index)">x</button>
 						</div>
 
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 

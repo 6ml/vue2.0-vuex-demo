@@ -55,8 +55,9 @@
 					this.plan.comment = this.comment;
 
 					this.$store.dispatch('savePlan', this.plan)
+					
+					this.$router.go(-1)
 				}
-				this.$router.go(-1)
 			},
 			update (e) {
 				let file = e.target.files[0];
