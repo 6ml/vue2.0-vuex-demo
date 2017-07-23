@@ -8,36 +8,34 @@
 			<h3>创建</h3>
 		</div>
 		
-		<hr>
-
-		<div class="time-extries">
+		<div class="time-entries">
 			<p v-if="!plans.length"><strong>还没有任何计划</strong></p>
 
-			<el-card class="box-card">
+			<el-card v-else class="plan-card">
 				<div class="item" v-for="(plan, index) in plans" :key="index">
 					<el-row>
-						<el-col :span="4">
+						<el-col :span="4" class="user-info">
 							<img :src="plan.avatar" class="plan-avatar">
 							<p class="text-center"><strong>
 								{{ plan.username }}
 							</strong></p>
 						</el-col>
-						<el-col :span="4">
+						<el-col :span="4" class="time">
 							<h3 class="plan-totalTime">
-								<i class="el-icon-time"></i>
-								{{ plan.totalTime }}
+								<i class="el-icon-time"></i>&nbsp;
+								{{ plan.totalTime }} hours
 							</h3>
 							<p class="plan-date">
 								<i class="el-icon-date"></i>
 								{{ plan.date }}
 							</p>
 						</el-col>
-						<el-col :span="14">
+						<el-col :span="14" class="comment">
 							<p class="plan-comment">
-								{{ plan.comment }}
+								<strong>备注: </strong>{{ plan.comment }}
 							</p>
 						</el-col>
-						<el-col :span="2">
+						<el-col :span="2" class="oper">
 							<el-button type="danger" icon="close" @click="deletePlan(index)"></el-button>
 						</el-col>
 					</el-row>
@@ -71,16 +69,74 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
   .plan-avatar{
   	display: block;
   	width: 60%;
-  	height: 80%;
   	border-radius: 50%;
   	margin: 0 auto 10px;
   }
 
-  .text-center{
-  	text-align: center;
+  .plan-card .el-card__body{
+  	padding: 0;
+  }
+
+  .plan-card{
+  	margin: 20px 0;
+
+  	.item{
+	  	border-bottom: 1px solid #dbdbdb;
+
+	  	.user-info{
+	  		border-right: 1px solid #dbdbdb;
+	  		background-color: #f5f5f5;
+
+	  		img{
+	  			width: 75px;
+	  			height: 75px;
+	  			margin: 10px auto 0;
+	  		}
+
+	  		p {
+	  			margin: 10px 0;
+	  			font-size: 0.9em;
+	  		}
+	  	}
+
+	  	.time {
+			text-align: center;
+			padding-top: 10px;
+
+			.plan-date {
+				margin: 0 10px;
+				border-radius: 3px;
+				background-color: #337ab7;
+				color: #fff;
+				padding: 3px 0;
+				font-size: 0.8em;
+			}
+	  	}
+
+	  	.comment {
+	  		font-size: 0.9em;
+	  		padding: 15px 10px;
+	  	}
+
+	  	.oper {
+	  		position: relative;
+	  		font-size: 0.8em;
+
+	  		.el-button {
+	  			padding: 3px;
+	  			position: absolute;
+	  			top: 0;
+	  			right: 0;
+	  		}
+	  	}
+
+	  	&:last-child {
+	  		border: 0;
+	  	}
+	}
   }
 </style>
