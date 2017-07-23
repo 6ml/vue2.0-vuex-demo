@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import router from './router'
 import ElementUI from 'element-ui'
+import 'normalize.css'
 import 'element-ui/lib/theme-default/index.css'
 // import 'bootstrap/dist/css/bootstrap.css'
 
