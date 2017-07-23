@@ -25,8 +25,8 @@
   export default {
     components: {'sidebar': Sidebar},
     mounted: function(){
-      // this.$store.dispatch('getPlans')
-      // this.$store.dispatch('getTotalTime')
+      this.$store.dispatch('getPlans')
+      this.$store.dispatch('getTotalTime')
     },
     data() {
       return {
